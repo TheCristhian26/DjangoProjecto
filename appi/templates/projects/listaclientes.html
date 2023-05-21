@@ -1,0 +1,69 @@
+{% extends 'layouts/base.html' %}
+{% block content %}
+{% load static %} 
+<link rel="stylesheet" href="/appi/static/listaclientes.css">
+<div class="container">
+  <div class="row d-flex justify-content-center">
+    <div class="col-md-10">
+      <div>
+        <h1>Lista Clientes </h1>
+        <a class="btn btn-primary mb-3" href="{% url 'form-register' %}"> Registrar usuarios</a>
+        <table class="table table-dark table-striped">
+          <thead>
+            <tr>
+              <td> codigo </td>
+              <td> nombre </td>
+              <td> apellido </td>
+              <td> direccion </td>
+              <td> telefono </td>
+              <td> email </td>
+              <td> username </td>
+              <td> password </td>
+              <td> tipoPersona_id </td>
+            </tr>
+          </thead>
+          <tbody>
+            {% for Persona in Personas %}
+            <tr>
+              <td>
+                {{ Persona.codigo }}
+              </td>
+              <td>
+                {{ Persona.nombre }}
+              </td>
+              <td>
+                {{ Persona.apellido }}
+              </td>
+              <td>
+                {{ Persona.direccion }}
+              </td>
+              <td>
+                {{ Persona.telefono }}
+              </td>
+              <td>
+                {{ Persona.email }}
+              </td>
+              <td>
+                {{ Persona.username }}
+              </td>
+              <td>
+                {{ Persona.password }}
+              </td>
+              <td>
+                {{ Persona.tipoPersona_id }}
+              </td>
+              <td>
+                <div class="d-flex p-2">
+                  <a class="btn btn-warning" style="margin-right: 5px;" href="">Edit</a>
+                  <a class="btn btn-danger" href="">delete</a>
+                </div>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

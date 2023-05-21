@@ -1,0 +1,24 @@
+{% extends 'layouts/base.html'%}
+{% block content %}
+{% load static %}
+<head>
+    <link rel="stylesheet" href="index1.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Login</title>
+</head>
+<body>
+    <form action="{% url 'login' %}" method="POST">
+        {% csrf_token %}
+        <h1 class="title"> Login </h1>
+        <label for="username">
+            <i class="fa-solid fa-user"> username </i>
+            <input type="text" class="form-control"id="username"name="username">
+        </label>
+        <label for="password">
+            <i class="fa-solid fa-lock"> password </i>
+            <input type="password"class="form-control" id="password"name="password">
+        </label>
+        <a href="{% url 'user/promocionar.html' %}" id="button">Login</a>
+        <a href="" class="link">¿Olvidaste tu contraseña?</a>
+    </form>
+{% endblock %}
