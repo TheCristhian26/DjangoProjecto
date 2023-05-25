@@ -23,6 +23,7 @@ def registrar(request):
 def singup(request):
     return(request,'projects/singup.html')
 
+@login_required
 def listaclientes(request):
     Personas=Persona.objects.all()
     return render(request,'projects/listaclientes.html',{
@@ -31,6 +32,7 @@ def listaclientes(request):
 
 def showpromocionar(request):
     return render(request,'user/promocionar.html')
+
 
 def showlogin(request):
     return render(request,'user/login.html')
@@ -45,14 +47,17 @@ def startsession(request):
         login(request,user)
         return redirect('projects.listaclientes')
     
+@login_required        
 def showsingup(request):
    """
    """
    return render(request,'user/singup.html')
 
+@login_required
 def showFormRegister(request):
     return render(request,'user/promocionar.html')
 
+@login_required
 def signup(request):
     usuario1=usuario.objects.create_user(
        username=request.POST["username"],
@@ -65,6 +70,7 @@ def signup(request):
     login(request,usuario1)
     return usuario1
 
+@login_required
 def storePersona(request):
     """
     Registrar el usuario
@@ -96,3 +102,33 @@ def storePersona(request):
     )
     variable1.save()
     return render(request,'user/promocionar.html')
+
+@login_required
+def updateProject(request,persona_codigo):
+    Persona=get_object_or_404(Persona,codigo=persona_codigo)
+    Persona.nombre=request.POST["nombre"]
+    Persona.apellido=request.POST["apellido"]
+    Persona.direcccion=request.POST["direccion"]
+    Persona.telefono=request.POST["telefono"]
+    Persona.save()
+    return redirect("projects.listaclientes")
+
+
+
+def showconfirmEdit(request,persona_codigo):
+    persona1=get_object_or_404(Persona,codigo=persona_codigo)
+    return render(request,'projects/edit.html',{
+        'persona1':persona1
+    })
+
+def Destroy(requets,persona_codigo):
+    persona1=get_object_or_404(Persona,codigo=persona_codigo)
+    persona1.delete()
+    return redirect(requets,'listaclientes.html')
+
+def showconfirdelete(requets,persona_codigo):
+    persona1=get_object_or_404(Persona,codigo=persona_codigo)
+    return render (requets,'projects/delete.html',{
+        'persona1':persona1
+    })
+

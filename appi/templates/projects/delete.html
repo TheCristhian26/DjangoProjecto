@@ -6,14 +6,14 @@
         <div class="row d-flex justify-content-center mt-5"> 
             <div class="col-md-10">
                 <h3>
-                    ¿Esta seguro querer eliminar el projecto {{project.name}}?
+                    ¿Esta seguro querer eliminar el projecto {{project.nombre}}?
                 </h3>
             </div>
         </div>
     </div>
     <div class="row d-flex justify-content-center mt-3">
         <div class="col-md-2">
-            <a class="btn btn-success" href="{% url 'projects.list' %}">Back to projects</a>
+            <a class="btn btn-success" href="{% url 'projects/listaclientes.html' %}">Back to projects</a>
         </div>
         <div class="col-md-2"></div>
         <a class="btn btn-danger" href="{% url 'projects.destroy' project.id %}">delete</a>

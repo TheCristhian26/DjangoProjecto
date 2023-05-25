@@ -5,6 +5,7 @@
 <div>
     <form action="{% url 'personas.store' %}" method="POST">
         {% csrf_token %}
+        
         <div class="mb-3">
             <label for="codigo" class="form-label">codigo</label>
             <input type="text" class="form-control" id="codigo" name="codigo">
