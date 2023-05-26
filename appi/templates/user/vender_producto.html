@@ -1,0 +1,45 @@
+{% extends "layouts/base.html" %}
+
+{% block content %}
+
+<div>
+    <form action="{% url 'persona.venta' %}" method="POST">
+        {% csrf_token %}
+        
+        <div class="mb-3">
+            <label for="persona_id" class="form-label">Id persona </label>
+            <input type="text" class="form-control" id="persona_id" name="persona_id">
+        </div>
+        
+        <div class="mb-3">
+            <label for="producto1_id" class="form-label">Id producto</label>
+            <input type="text" class="form-control" id="producto1_id" name="producto1_id">
+        </div>
+
+        <div class="mb-3">
+            <label for="numero_ventas" class="form-label">numero de ventas </label>
+            <input type="text" class="form-control" id="numero_ventas" name="numero_ventas">
+        </div>
+
+        <div class="mb-3">
+            <label for="numero_de_factura" class="form-label">numero factura</label>
+            <input type="text" class="form-control" id="numero_de_factura" name="numero_de_factura">
+        </div>
+
+        <div class="mb-3">
+            <label for="estado_factura" class="form-label">Estado factura</label>
+            <input type="text" class="form-control" id="estado_factura" name="estado_factura">
+        </div>
+
+        <div class="mb-3">
+            <label for="fecha" class="form-label">fecha</label>
+            <input type="date" class="form-control" id="fecha" name="fecha">
+        </div>
+        <button type="submit" class="btn btn-primary">Run</button>
+    </form>
+</div>
+{% endblock %}
+
+
+
+

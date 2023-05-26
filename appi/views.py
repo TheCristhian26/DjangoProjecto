@@ -5,7 +5,7 @@ from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib import messages
-from .models import  Persona,usuario
+from .models import  Persona,usuario,ventas
 
 
 def landing(request):
@@ -24,6 +24,14 @@ def singup(request):
     return(request,'projects/singup.html')
 
 @login_required
+def historial_ventas(requets):
+    ventass=ventas.objects.all()
+    return render(requets,'projects/historial_ventas.html',{
+        "ventass":ventass
+    })
+
+
+@login_required
 def listaclientes(request):
     Personas=Persona.objects.all()
     return render(request,'projects/listaclientes.html',{
@@ -33,6 +41,8 @@ def listaclientes(request):
 def showpromocionar(request):
     return render(request,'user/promocionar.html')
 
+def showventas(request):
+    return render(request,'user/vender_producto.html')
 
 def showlogin(request):
     return render(request,'user/login.html')
@@ -101,6 +111,19 @@ def storePersona(request):
     variable1.save()
     return render(request,'user/promocionar.html')
 
+
+def storeventas(request):
+    variable=ventas.objects.create(
+        numero_ventas = request.POST["numero_ventas"],
+        numero_de_factura = request.POST["numero_de_factura"],
+        estado_factura = request.POST["estado_factura"],
+        fecha = request.POST["fecha"],
+        persona_id = request.POST["persona_id"],
+        producto1_id= request.POST["producto1_id"]
+    )
+    variable.save()
+    return render(request,'user/vender_producto.html')
+
 @login_required
 def updateProject(request,persona_codigo):
     Persona=get_object_or_404(Persona,codigo=persona_codigo)
@@ -129,4 +152,3 @@ def showconfirdelete(requets,persona_codigo):
     return render (requets,'projects/delete.html',{
         'persona1':persona1
     })
-
