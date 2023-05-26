@@ -111,9 +111,9 @@ def storePersona(request):
     variable1.save()
     return render(request,'user/promocionar.html')
 
-
+@login_required
 def storeventas(request):
-    variable=ventas.objects.create(
+    variable1=ventas.objects.create(
         numero_ventas = request.POST["numero_ventas"],
         numero_de_factura = request.POST["numero_de_factura"],
         estado_factura = request.POST["estado_factura"],
@@ -121,7 +121,7 @@ def storeventas(request):
         persona_id = request.POST["persona_id"],
         producto1_id= request.POST["producto1_id"]
     )
-    variable.save()
+    variable1.save()
     return render(request,'user/vender_producto.html')
 
 @login_required

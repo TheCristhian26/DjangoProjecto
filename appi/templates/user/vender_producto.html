@@ -3,7 +3,8 @@
 {% block content %}
 
 <div>
-    <form action="{% url 'persona.venta' %}" method="POST">
+    
+    <form action="{% url 'venta.persona' %}" method="POST">
         {% csrf_token %}
         
         <div class="mb-3">

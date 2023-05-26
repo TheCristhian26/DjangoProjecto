@@ -25,7 +25,7 @@ class producto(models.Model):
 
 
 class ventas(models.Model):
-    numero_ventas=models.BigIntegerField()
+    numero_ventas=models.BigIntegerField(primary_key=True)
     numero_de_factura=models.BigIntegerField()
     estado_factura=models.BooleanField(default=True)
     fecha=models.DateTimeField(auto_now_add=True)
