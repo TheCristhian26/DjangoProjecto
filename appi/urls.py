@@ -3,12 +3,12 @@ from django.contrib import admin
 from django.urls import path
 from . import views
 urlpatterns = [
-    path('',views.landing,name='user/inicio.html'),
-    path('inicio/',views.inicio,name='user/inicio.html'),
+    path('',views.landing,name='landing'),
+    path('inicio/',views.inicio,name='inicio'),
     path('registrar/',views.showFormRegister,name='form-register'),
     path('personas-register/',views.storePersona,name="personas.store"),
-    path('register/',views.listaclientes,name='projects/listaclientes.html'),   
-    path('login/',views.showlogin,name='user/login.html'),
+    path('register/',views.listaclientes,name='personas.list'),   
+    path('login/',views.showlogin,name='login-form'),
     path('login1/',views.startsession,name='login'),
     path('singup/',views.showsingup,name='signup'),
     path('projects-edit/<int:persona_codigo>/',views.showconfirmEdit,name="projects.edit"),

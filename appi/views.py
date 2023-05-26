@@ -49,8 +49,6 @@ def startsession(request):
     
 @login_required        
 def showsingup(request):
-   """
-   """
    return render(request,'user/singup.html')
 
 @login_required
