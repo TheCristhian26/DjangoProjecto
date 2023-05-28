@@ -52,7 +52,7 @@ def startsession(request):
     user=authenticate(request=request,username=request.POST['username'],password=request.POST['password']) 
     if(user is None):
         messages.add_message(request=request, level=messages.ERROR, messages='wrong credentials, try again')
-        return redirect('Login')
+        return redirect('login-form')
     else:
         login(request,user)
         return redirect('projects.listaclientes')
@@ -61,9 +61,11 @@ def startsession(request):
 def showsingup(request):
    return render(request,'user/singup.html')
 
-@login_required
+
 def showFormRegister(request):
     return render(request,'user/promocionar.html')
+
+
 
 @login_required
 def signup(request):
@@ -78,7 +80,7 @@ def signup(request):
     login(request,usuario1)
     return usuario1
 
-@login_required
+
 def storePersona(request):
     """
     Registrar el usuario
@@ -152,3 +154,8 @@ def showconfirdelete(requets,persona_codigo):
     return render (requets,'projects/delete.html',{
         'persona1':persona1
     })
+
+def showlogout(requets):
+    logout(requets)
+    return redirect('inicio')
+    

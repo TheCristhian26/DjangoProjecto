@@ -14,6 +14,7 @@ urlpatterns = [
     path('login/',views.showlogin,name='login-form'),
     path('login1/',views.startsession,name='login'),
     path('singup/',views.showsingup,name='signup'),
+    path('logout/',views.showlogout,name='logout'),
     path('projects-edit/<int:persona_codigo>/',views.showconfirmEdit,name="projects.edit"),
     path('projects-update/<int:persona_codigo>/',views.updateProject,name="projects.update"),
 ]
