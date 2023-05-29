@@ -15,8 +15,9 @@ urlpatterns = [
     path('login1/',views.startsession,name='login'),
     path('singup/',views.showsingup,name='signup'),
     path('logout/',views.showlogout,name='logout'),
-    path('projects-edit/<int:persona_codigo>/',views.showconfirmEdit,name="projects.edit"),
-    path('projects-update/<int:persona_codigo>/',views.updateProject,name="projects.update"),
+    path('edit/',views.showedit,name="update"),
+    path('projects-edit/<int:Persona_codigo>/',views.showconfirmEdit,name="projects.edit"),
+    path('projects-update/<int:Persona_codigo>/',views.updateProject,name="projects.update"),
 ]
    
 

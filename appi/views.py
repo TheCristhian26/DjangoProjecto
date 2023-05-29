@@ -47,7 +47,10 @@ def showventas(request):
 def showlogin(request):
     return render(request,'user/login.html')
 
-@login_required
+def showedit(request):
+    return render(request,'projects/edit.html')
+
+
 def startsession(request):
     user=authenticate(request=request,username=request.POST['username'],password=request.POST['password']) 
     if(user is None):
@@ -55,7 +58,7 @@ def startsession(request):
         return redirect('login-form')
     else:
         login(request,user)
-        return redirect('projects.listaclientes')
+        return redirect('inicio')
     
 @login_required        
 def showsingup(request):
@@ -113,7 +116,7 @@ def storePersona(request):
     variable1.save()
     return render(request,'user/promocionar.html')
 
-@login_required
+
 def storeventas(request):
     variable1=ventas.objects.create(
         numero_ventas = request.POST["numero_ventas"],
@@ -138,9 +141,9 @@ def updateProject(request,persona_codigo):
 
 
 
-def showconfirmEdit(request,persona_codigo):
-    persona1=get_object_or_404(Persona,codigo=persona_codigo)
-    return render(request,'projects/edit.html',{
+def showconfirmEdit(request,Persona_codigo):
+    persona1=get_object_or_404(Persona,codigo=Persona_codigo)
+    return render(request,'projects/delete.html',{
         'persona1':persona1
     })
 
