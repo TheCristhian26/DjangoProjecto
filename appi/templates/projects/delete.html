@@ -1,22 +1,26 @@
-{% extends 'layouts/base.html' %}
+{% extends "layouts/base.html" %}
 
-{% block  content %}
+{% block content %}
 
-    <div class="container">
-        <div class="row d-flex justify-content-center mt-5"> 
-            <div class="col-md-10">
-                <h3>
-                    ¿Esta seguro querer eliminar el projecto {{project.nombre}}?
-                </h3>
-            </div>
-        </div>
+<div class="d-flex justify-content-center align-items-center pt-5 pb-5">
+    <h1 class="text-center">
+        Delete project
+    </h1>
+</div>
+
+<div class="row">
+    <div class="col-sm-12 d-flex justify-content-center pb-5">
+        <h4 class="text-center">Are you sure to delete project {{ project.name }} ?</h4>
     </div>
-    <div class="row d-flex justify-content-center mt-3">
-        <div class="col-md-2">
-            <a class="btn btn-success" href="{% url 'projects/listaclientes.html' %}">Back to projects</a>
-        </div>
-        <div class="col-md-2"></div>
-        <a class="btn btn-danger" href="{% url 'projects.destroy' project.id %}">delete</a>
+</div>
+
+<div class="row d-flex justify-content-center align-items-center">
+    <div class="col-sm-1">
+        <a href="{% url 'projects.destroy' persona.codigo %}" class="btn btn-danger">Delete</a>
     </div>
-    
+    <div class="col-sm-1">
+        <a href="{% url 'projects.list' %}" class="btn btn-success">Cancel</a>
+    </div>
+</div>
+
 {% endblock %}

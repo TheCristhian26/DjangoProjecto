@@ -7,6 +7,8 @@ from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib import messages
 from .models import  Persona,usuario,ventas
 
+def showiinfo(request):
+    return render (request,'projects/contactanos.html')
 
 def landing(request):
     return render(request,'user/inicio.html')
@@ -31,7 +33,34 @@ def historial_ventas(requets):
     })
 
 
-@login_required
+def detailOfProject(request,persona_codigo):
+    persona = get_object_or_404(Persona, codigo=persona_codigo) 
+    ventass = ventas.objects.filter(Persona=persona_codigo)
+    return render(request,'projects/detail.html',{
+        "persona": persona,
+        "ventass" : ventass
+    })
+
+
+def showUpdateProjectForm(request, persona_codigo):
+    persona = get_object_or_404(Persona, codigo=persona_codigo)
+    return render(request,'projects/edit.html',{
+        "persona" : persona
+    })
+
+
+def confirmDeleteProject(request,persona_codigo):
+    persona = get_object_or_404(Persona, codigo=persona_codigo)
+    return render(request, "projects/delete.html", {
+        "persona": persona
+    })
+
+
+def destroyProject(request,persona_codigo):
+    persona = get_object_or_404(Persona, codigo=persona_codigo)
+    persona.delete()
+    return (request,'projects.user/inicio.html')
+
 def listaclientes(request):
     Personas=Persona.objects.all()
     return render(request,'projects/listaclientes.html',{
@@ -51,14 +80,15 @@ def showedit(request):
     return render(request,'projects/edit.html')
 
 
-def startsession(request):
-    user=authenticate(request=request,username=request.POST['username'],password=request.POST['password']) 
+def startSession(request):
+    user = authenticate(request=request, username=request.POST["username"],password=request.POST["password"])
     if(user is None):
-        messages.add_message(request=request, level=messages.ERROR, messages='wrong credentials, try again')
+        messages.add_message(request=request, level=messages.ERROR, message='Wrong credentials, try again')
         return redirect('login-form')
     else:
         login(request,user)
-        return redirect('inicio')
+        return redirect('landing')
+
     
 @login_required        
 def showsingup(request):
@@ -161,4 +191,35 @@ def showconfirdelete(requets,persona_codigo):
 def showlogout(requets):
     logout(requets)
     return redirect('inicio')
-    
+
+@login_required
+def showUpdateTaskForm(request, persona_codigo):
+    persona = Persona.objects.filter(user=request.user)
+    task = get_object_or_404(ventas, codigo=persona_codigo)
+    return render(request,'projects/edit.html',{
+        "persona" : persona,
+        "task": task
+    })
+
+@login_required
+def updateTask(request,persona_codigo):
+    Persona = get_object_or_404(ventas, codigo=persona_codigo)
+    Persona.nombre=request.POST["nombre"]
+    Persona.apellido=request.POST["apellido"]
+    Persona.direcccion=request.POST["direccion"]
+    Persona.telefono=request.POST["telefono"]
+    Persona.save()
+    return redirect('tasks.list')
+
+@login_required
+def confirmDeleteTask(request,persona_codigo):
+    task = get_object_or_404(ventas, codigo=persona_codigo)
+    return render(request, "projects/delete.html", {
+        "task": task
+    })
+
+@login_required
+def destroyTask(request,persona_codigo):
+    task = get_object_or_404(ventas, codigo=persona_codigo)
+    task.delete()
+    return redirect(request,'projects.listaclientes')

@@ -5,29 +5,32 @@
 <body>
     <h1> Editar </h1>
     <div class="container">
-        <form action="{% url 'projects.update' Persona.codigo %}" method="POST">
+        <form action="{% url 'projects.edit' persona.codigo %}" method="POST">
             {% csrf_token %}
             <div class="mb-3">
                 <label for="nombre" class="form-label">Nombre</label>
                 <input type="text" class="form-control" id="nombre" name="nombre" value="{{Persona.nombre}}">
             </div>
             <div class="mb-3">
-                <label for="exampleInputPassword1" class="form-label">apellido</label>
+                <label for="apellido" class="form-label">apellido</label>
+                <input type="text" class="form-control" id="apellido" name="apellido" value="{{Persona.apellido}}">
                 <textarea class="form-control" id="apellido" cols="30" rows="10"
                     name="apellido"> {{Persona.apellido}}</textarea>
             </div>
             <div class="mb-3">
-                <label for="exampleInputPassword1" class="form-label">Direccion</label>
+                <label for="direccion" class="form-label">Direccion</label>
+                <input type="text" class="form-control" id="direccion" name="direccion" value="{{Persona.direccion}}">
                 <textarea class="form-control" id="direccion" cols="30" rows="10"
-                    name="direccion"> {{Persona.direccion}}</textarea>
+                    name="direccion"> {{Persona.direccion}} </textarea>
             </div>
             <div class="mb-3">
-                <label for="exampleInputPassword1" class="form-label">Telefono</label>
+                <label for="telefono" class="form-label">Telefono</label>
+                <input type="text" class="form-control" id="telefono" name="telefono" value="{{Persona.telefono}}">
                 <textarea class="form-control" id="telefono" cols="30" rows="10"
-                    name="telefono"> {{Persona.telefono}}</textarea>
+                    name="telefono"> {{Persona.telefono}} </textarea>
             </div>
             <button type="submit" class="btn btn-primary">save</button>
-            <a class="btn btn-danger" href="{% url 'projects/listaclientes.html' %}">back to list</a>
+            <a class="btn btn-danger" href="{% url 'personas.list' %}">back to list</a>
         </form>
     </div>
 </body>
